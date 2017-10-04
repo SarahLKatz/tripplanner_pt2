@@ -4,8 +4,12 @@ var bodyParser = require("body-parser");
 var path = require("path");
 
 var db = require("./models").db;
+var hotel = require('./models').Hotel;
+var restaurant= require('./models').Restaurant;
+var activity = require('./models').Activity;
 
 var app = express();
+var router = require('./router.js');
 
 // logging and body-parsing
 app.use(volleyball);
@@ -15,6 +19,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, "..", "public")));
+
+app.use('/api',router);
+
+
+fetch('/')
+.then(result => result.json())
+.then(data => {
+    console.log(data)
+})
+.catch(console.error)
 
 // failed to catch req above means 404, forward to error handler
 app.use(function(req, res, next) {
