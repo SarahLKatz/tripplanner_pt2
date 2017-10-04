@@ -561,7 +561,7 @@ fetch('/api')
     let thisHotel = document.createElement('option');
     let name = document.createTextNode(`${hotel.name}`);
     thisHotel.appendChild(name);
-    thisHotel.value = `${hotel.id}`
+    thisHotel.value = `${hotel.name}&${hotel.place.location}`
     hotelChoices.appendChild(thisHotel);
   })
   
@@ -570,7 +570,7 @@ fetch('/api')
     let thisRestaurant = document.createElement('option');
     let name = document.createTextNode(`${restaurant.name}`);
     thisRestaurant.appendChild(name);
-    thisRestaurant.value = `${restaurant.id}`
+    thisRestaurant.value = `${restaurant.name}`
     restaurantChoices.appendChild(thisRestaurant);
   })
   
@@ -579,12 +579,43 @@ fetch('/api')
     let thisActivity = document.createElement('option');
     let name = document.createTextNode(`${activity.name}`);
     thisActivity.appendChild(name);
-    thisActivity.value = `${activity.id}`
+    thisActivity.value = `${activity.name}`
     activityChoices.appendChild(thisActivity);
   })
   
 })
 .catch(console.error);
+
+//add eventlistener on button and select the specific hotel
+let hotelBtn = document.getElementById('hotels-add');
+hotelBtn.addEventListener('click',function(){
+  // Get the select dom element
+  const select = document.getElementById(`hotels-choices`);
+  // use `.value` to get the currently selected value
+  const selectedId = select.value;
+
+  let splittedNameLocation = selectedId.split('&')
+  let selectedName = splittedNameLocation[0]; //
+  let selectedLocation = splittedNameLocation[1];
+  
+  //add hotel to the itinerary list
+  let hotelList = document.getElementById('hotels-list');
+  let addedHotel = document.createElement('li');
+  let name = document.createTextNode(`${selectedId}`);
+  addedHotel.appendChild(name);
+  hotelList.appendChild(addedHotel);
+
+  //add marker to map
+  
+})
+
+let restaurantBtn = document.getElementById('restaurants-add');
+restaurantBtn.addEventListener('click',function(){
+  const select = document.getElementById('restaurant-choices');
+  const selected = select.value;
+})
+
+let activityBtn = document.getElementById('activities-add');
 
 /***/ }),
 /* 2 */
