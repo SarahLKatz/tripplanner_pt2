@@ -549,6 +549,39 @@ const map = new mapboxgl.Map({
 const marker = buildMarker("activities", [-74.009, 40.705]);
 marker.addTo(map);
 
+fetch('/api')
+.then(result => result.json())
+.then(data => {
+  let allHotels = data.hotels;
+  let allRestaurants = data.restaurants;
+  let allActivities = data.activities;
+  
+  let hotelChoices = document.getElementById('hotels-choices');
+  allHotels.forEach(hotel => {
+    let thisHotel = document.createElement('option');
+    let name = document.createTextNode(`${hotel.name}`);
+    thisHotel.appendChild(name);
+    hotelChoices.appendChild(thisHotel);
+  })
+  
+  let restaurantChoices = document.getElementById('restaurants-choices');
+  allRestaurants.forEach(restaurant => {
+    let thisRestaurant = document.createElement('option');
+    let name = document.createTextNode(`${restaurant.name}`);
+    thisRestaurant.appendChild(name);
+    restaurantChoices.appendChild(thisRestaurant);
+  })
+  
+  let activityChoices = document.getElementById('activities-choices');
+  allActivities.forEach(activity => {
+    let thisActivity = document.createElement('option');
+    let name = document.createTextNode(`${activity.name}`);
+    thisActivity.appendChild(name);
+    activityChoices.appendChild(thisActivity);
+  })
+  
+})
+.catch(console.error);
 
 /***/ }),
 /* 2 */
