@@ -25,6 +25,7 @@ fetch('/api')
     let thisHotel = document.createElement('option');
     let name = document.createTextNode(`${hotel.name}`);
     thisHotel.appendChild(name);
+    thisHotel.value = `${hotel.id}`
     hotelChoices.appendChild(thisHotel);
   })
   
@@ -33,6 +34,7 @@ fetch('/api')
     let thisRestaurant = document.createElement('option');
     let name = document.createTextNode(`${restaurant.name}`);
     thisRestaurant.appendChild(name);
+    thisRestaurant.value = `${restaurant.id}`
     restaurantChoices.appendChild(thisRestaurant);
   })
   
@@ -41,6 +43,7 @@ fetch('/api')
     let thisActivity = document.createElement('option');
     let name = document.createTextNode(`${activity.name}`);
     thisActivity.appendChild(name);
+    thisActivity.value = `${activity.id}`
     activityChoices.appendChild(thisActivity);
   })
   
